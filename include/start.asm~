@@ -1,0 +1,38 @@
+	# -- Include/multiple source file testing --
+	#
+	# File: test.asm
+	# Purpose: Contains the entry point
+	#
+	# Compile and run:
+	#	
+	#  as -o program.o test.asm && ld -o program program.o && objdump -D program && ./program
+	#
+	# Comments:
+	#
+	#  This program is designed
+	#
+
+	.include "include.inc"
+	
+	.section .data
+var:	.byte 0x30
+msg:	.ascii "Test\n"
+	.set size, 5
+
+	.section .text
+	.global _start
+
+
+_start:
+	# print message
+	write $msg, $size,
+
+	# Print the number of bytes written
+	addl %eax, (var)
+	write $(var), $1
+
+	print \nHello\n
+	print "Hello Oli" 
+
+	# quit
+	quit

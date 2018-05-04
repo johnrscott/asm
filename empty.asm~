@@ -1,0 +1,3 @@
+	# Empty asm file
+	.section .text
+	
